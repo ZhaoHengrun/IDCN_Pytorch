@@ -27,3 +27,5 @@ Wandb 0.10.10<br/>
 ### Test&Eval
 运行`python test.py`进行测试，生成的图片保存在`results/`目录下	<br/>
 使用`tools/`目录下的`compute_psnr.m`计算psnr	<br/>
+### Results
+只使用一个dual domain block（程序中参数默认为8个），训练12270 epoch，在RGB通道上的psnr为27.6283（论文中为27.69），模型在`checkpoints/`中提供。<br/>
