@@ -157,14 +157,14 @@ class IDCN(nn.Module):
         self.conv_relu_4 = ConvRelu(in_channels=n_channels, out_channels=3, kernel=5, padding=2)
 
         self.dual_domain_blocks = self.make_layer(
-            block=DualDomainBlock(n_channels=n_channels, n_pyramid_cells=n_pyramid_cells,
-                                  n_pyramid_channels=n_pyramid_channels, qy=qy, qc=qc),
+            block=DualDomainBlock,
             num_of_layer=self.n_pyramids)
 
     def make_layer(self, block, num_of_layer):
         layers = []
         for _ in range(num_of_layer):
-            layers.append(block)
+            layers.append(block(n_channels=self.n_channels, n_pyramid_cells=self.n_pyramid_cells,
+                                n_pyramid_channels=self.n_pyramid_channels, qy=self.qy, qc=self.qc))
         return nn.Sequential(*layers)
 
     def forward(self, x):
